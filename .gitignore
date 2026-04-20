@@ -1,0 +1,19 @@
+# Compilados
+*.o
+*.so
+
+# Ejecutables
+app-cliente
+clavesRPC_server
+
+# Generados por rpcgen
+src/clavesRPC.h
+src/clavesRPC_clnt.c
+src/clavesRPC_svc.c
+src/clavesRPC_xdr.c
+src/clavesRPC_client.c
+src/clavesRPC_server.c
+src/Makefile.clavesRPC
+
+# Mac
+.DS_Store
