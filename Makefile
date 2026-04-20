@@ -38,11 +38,14 @@ RPC_SERVER_O = $(SRCDIR)/clavesRPC_server.o
 all: $(LIB) $(CLIENT) $(SERVER)
 
 # ==================================================
-# 1. GENERACIÓN RPC
+# 1. GENERACIÓN RPC (CAMBIO 1: no sobreescribe clavesRPC_server.c)
 # ==================================================
 
 rpcgen:
-	cd $(SRCDIR) && $(RPCGEN) -aNM clavesRPC.x
+	cd $(SRCDIR) && $(RPCGEN) -NM -c clavesRPC.x -o clavesRPC_xdr.c
+	cd $(SRCDIR) && $(RPCGEN) -NM -h clavesRPC.x -o clavesRPC.h
+	cd $(SRCDIR) && $(RPCGEN) -NM -l clavesRPC.x -o clavesRPC_clnt.c
+	cd $(SRCDIR) && $(RPCGEN) -NM -s tcp clavesRPC.x -o clavesRPC_svc.c
 
 # ==================================================
 # 2. BIBLIOTECA CLIENTE
@@ -100,7 +103,6 @@ distclean: clean
 	rm -f $(SRCDIR)/clavesRPC_svc.c
 	rm -f $(SRCDIR)/clavesRPC_xdr.c
 	rm -f $(SRCDIR)/clavesRPC_client.c
-	rm -f $(SRCDIR)/clavesRPC_server.c
 	rm -f $(SRCDIR)/Makefile.clavesRPC
 
 .PHONY: all clean distclean rpcgen
