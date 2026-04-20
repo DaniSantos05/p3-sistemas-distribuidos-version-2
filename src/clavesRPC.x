@@ -7,9 +7,9 @@ struct paquete_rpc {
     int z;
 };
 
-typedef string t_clave<MAX_CADENA>;
-typedef string t_valor1<MAX_CADENA>;
-typedef float t_vector_value2<MAX_VECTOR>;
+typedef string t_clave <MAX_CADENA>;
+typedef string t_valor1 <MAX_CADENA>;
+typedef float t_vector_value2 <MAX_VECTOR>;
 
 struct rpc_get_value_res {
     int status;
