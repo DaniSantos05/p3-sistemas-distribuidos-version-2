@@ -64,7 +64,6 @@ rpc_set_value_1_svc(t_clave key, t_valor1 value1, int N_value2,
 
 /*
  * Operación 3: GET_VALUE
- * ¡PUNTO CLAVE PARA LA DEFENSA! Aquí reservamos memoria para enviar la respuesta.
  */
 bool_t
 rpc_get_value_1_svc(t_clave key, rpc_get_value_res *result, struct svc_req *rqstp)
@@ -83,8 +82,7 @@ rpc_get_value_1_svc(t_clave key, rpc_get_value_res *result, struct svc_req *rqst
     // 1. Preguntamos a nuestra base de datos local por los datos de esa 'key'
     result->status = get_value(key, value1_local, &n_local, v2_local, &value3_local);
 
-    /* 
-     * 2. PREPARACIÓN DE LA RESPUESTA PARA LA RED
+    /*
      * Si la clave existía (status == 0), tenemos que meter los datos en '*result'.
      * PROBLEMA: XDR (el traductor de rpcgen a red) necesita que los strings y arrays 
      * sean punteros que sigan existiendo después de que esta función termine. 
